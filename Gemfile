@@ -8,3 +8,4 @@ gem 'rake'
 gem 'minitest-ci'
 
 # let's add a newline!
+# and another newline!
