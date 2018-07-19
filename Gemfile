@@ -9,3 +9,4 @@ gem 'minitest-ci'
 
 # let's add a newline!
 # and another newline!
+# and even a third newline!
