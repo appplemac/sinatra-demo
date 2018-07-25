@@ -6,3 +6,5 @@ gem 'minitest'
 gem 'rack-test'
 gem 'rake'
 gem 'minitest-ci'
+
+# empty lines are great
