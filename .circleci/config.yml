@@ -4,6 +4,10 @@ jobs:
     working_directory: ~/circleci-demo-ruby-sinatra
     machine: true
     steps:
+      - run:
+          command: "bash collect_stats.sh"
+          background: true
+          
       - checkout
 
       # Restore bundle cache
@@ -25,6 +29,9 @@ jobs:
       # Save artifacts
       - store_test_results:
           path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/stats
+          prefix: stats
 
 workflows:
   version: 2
