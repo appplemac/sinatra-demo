@@ -2,11 +2,7 @@ version: 2
 jobs:
   build:
     working_directory: ~/circleci-demo-ruby-sinatra
-    docker:
-      - image: circleci/ruby:2.4.4
-        environment:
-          TESTOPTS: "--ci-dir=/tmp/test-results"
-          APP_ENV: test
+    machine: true
     steps:
       - checkout
 
