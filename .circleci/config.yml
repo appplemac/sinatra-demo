@@ -3,36 +3,9 @@ jobs:
   build:
     working_directory: ~/circleci-demo-ruby-sinatra
     machine:
-      resource_class: xlarge
+      resource_class: 2xlarge
     steps:
-      - run:
-          command: "bash collect_stats.sh"
-          background: true
-          
-      - checkout
-
-      # Restore bundle cache
-      - restore_cache:
-          key: sinatra-demo-{{ checksum "Gemfile.lock" }}
-
-      # Bundle install dependencies
-      - run: bundle install --path vendor/bundle
-
-      # Store bundle cache
-      - restore_cache:
-          key: sinatra-demo-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-
-      # Run minitest
-      - run: bundle exec rake
-
-      # Save artifacts
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/stats
-          prefix: stats
+      - run: free
 
 workflows:
   version: 2
