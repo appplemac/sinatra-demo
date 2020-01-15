@@ -1,8 +1,9 @@
-version: 2
+version: 2.1
 jobs:
   build:
     working_directory: ~/circleci-demo-ruby-sinatra
-    machine: true
+    machine:
+      resource_class: xlarge
     steps:
       - run:
           command: "bash collect_stats.sh"
