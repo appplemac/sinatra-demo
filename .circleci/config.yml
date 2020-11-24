@@ -1,37 +1,25 @@
-version: 2
+version: 2.1
+
 jobs:
-  build:
-    working_directory: ~/circleci-demo-ruby-sinatra
-    docker:
-      - image: circleci/ruby:2.4.4
-        environment:
-          TESTOPTS: "--ci-dir=/tmp/test-results"
-          APP_ENV: test
+  build-medium:
+    machine:
+      image: ubuntu-2004:202011-01
+    resource_class: arm.medium
     steps:
-      - checkout
-
-      # Restore bundle cache
-      - restore_cache:
-          key: sinatra-demo-{{ checksum "Gemfile.lock" }}
-
-      # Bundle install dependencies
-      - run: bundle install --path vendor/bundle
-
-      # Store bundle cache
-      - restore_cache:
-          key: sinatra-demo-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-
-      # Run minitest
-      - run: bundle exec rake
-
-      # Save artifacts
-      - store_test_results:
-          path: /tmp/test-results
+      - uname -a
+      - echo "Hello, Arm!"
+  build-large:
+    machine:
+      image: ubuntu-2004:202011-01
+    resource_class: arm.large
+    steps:
+      - uname -a
+      - echo "Hello, Arm!"
 
 workflows:
   version: 2
   build:
     jobs:
-      - build
+      - build-medium
+      - build-large
+
